@@ -1,66 +1,67 @@
 <form #f="ngForm" class="d-flex flex-column">
-    <mat-form-field appearance="fill">
-        <mat-label>Groupe</mat-label>
-        <mat-select name="group" ngModel (ngModelChange)="setCategories($event)" required>
-            <mat-option *ngFor="let group of groups" [value]="group.name">
-                {{group.name}}
-            </mat-option>
-        </mat-select>
-      </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Groupe</mat-label>
+    <mat-select name="group" ngModel (ngModelChange)="setCategories($event)" required>
+      <mat-option *ngFor="let group of groups" [value]="group.name">
+        {{group.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-    <mat-form-field appearance="fill">
-        <mat-label>Catégorie</mat-label>
-        <mat-select name="category" ngModel required>
-            <mat-option *ngFor="let category of categories" [value]="category.name">
-                {{category.name}}
-            </mat-option>
-        </mat-select>
-      </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Catégorie</mat-label>
+    <mat-select name="category" ngModel required>
+      <mat-option *ngFor="let category of categories" [value]="category.name">
+        {{category.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Montant</mat-label>
-      <input matInput name="amount" ngModel required numbersOnly/>
-    </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Montant</mat-label>
+    <input matInput name="amount" ngModel required numbersOnly />
+  </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Description</mat-label>
-      <input matInput name="description" ngModel required/>
-    </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Description</mat-label>
+    <input matInput name="description" ngModel required />
+  </mat-form-field>
 
-    <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Date</mat-label>
-        <input matInput [matDatepicker]="picker" (focus)="picker.open()" #date="ngModel" [ngModel]="today" [ngModelOptions]="{standalone: true}">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker touchUi #picker (closed)="paidBy.focus()"></mat-datepicker>
-        <input type="hidden" name="date" [ngModel]="date.value | date" />
-      </mat-form-field>
-      
-      <mat-form-field appearance="fill">
-        <mat-label>Qui a payé ?</mat-label>
-        <mat-select #paidBy name="paidBy" [ngModel]="currentUser?.name" (ngModelChange)="setMeansOfPayment($event)">
-          <mat-option *ngFor="let user of users" [value]="user.name">{{user.name}}</mat-option>
-        </mat-select>
-      </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Date</mat-label>
+    <input matInput [matDatepicker]="picker" (focus)="picker.open()" #date="ngModel" [ngModel]="today"
+      [ngModelOptions]="{standalone: true}">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker touchUi #picker (closed)="paidBy.focus()"></mat-datepicker>
+    <input type="hidden" name="date" [ngModel]="date.value | date" />
+  </mat-form-field>
 
-    <mat-form-field appearance="fill">
-        <mat-label>Pour qui ?</mat-label>
-        <mat-select name="paidFor" #paidFor="ngModel" [ngModel]="everyone" multiple>
-            <mat-select-trigger *ngIf="paidFor.value?.length === users.length">
-                Tout le monde
-              </mat-select-trigger>
-          <mat-option *ngFor="let user of users" [value]="user.name">{{user.name}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      
-      <mat-form-field appearance="fill">
-        <mat-label>Moyen de paiement</mat-label>
-        <mat-select name="meansOfPayment" [ngModel]="meansOfPayment[0]">
-          <mat-option *ngFor="let meanOfPayment of meansOfPayment" [value]="meanOfPayment">{{meanOfPayment}}</mat-option>
-        </mat-select>
-      </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Qui a payé ?</mat-label>
+    <mat-select #paidBy name="paidBy" [ngModel]="currentUser?.name" (ngModelChange)="setMeansOfPayment($event)">
+      <mat-option *ngFor="let user of users" [value]="user.name">{{user.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-      <div class="align-self-end d-flex flex-row-reverse">
-        <button type="submit" mat-raised-button color="primary" class="align-self-end" (click)="save(f)">Enregistrer la transaction</button>
-        <a routerLink="" type="button" mat-raised-button color="default" class="align-self-end mx-2">Annuler</a>
-      </div>
-  </form>
+  <mat-form-field appearance="fill">
+    <mat-label>Pour qui ?</mat-label>
+    <mat-select name="paidFor" #paidFor="ngModel" [ngModel]="everyone" multiple>
+      <mat-select-trigger *ngIf="paidFor.value?.length === users.length">
+        Tout le monde
+      </mat-select-trigger>
+      <mat-option *ngFor="let user of users" [value]="user.name">{{user.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Moyen de paiement</mat-label>
+    <mat-select name="meansOfPayment" [ngModel]="meansOfPayment[0]">
+      <mat-option *ngFor="let meanOfPayment of meansOfPayment" [value]="meanOfPayment">{{meanOfPayment}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="d-flex flex-column flex-sm-row-reverse">
+    <button type="submit" mat-raised-button color="primary" (click)="save(f)">Enregistrer la transaction</button>
+    <a routerLink="" type="button" mat-raised-button color="default" class="mt-2 mt-sm-0 mx-sm-2">Annuler</a>
+  </div>
+</form>

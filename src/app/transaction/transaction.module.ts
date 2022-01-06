@@ -19,8 +19,8 @@ import { MatIconModule } from '@angular/material/icon';
 const routes: Routes = [{
   path: '',
   children: [
-    {path: '', component: TransactionListComponent},
-    {path: 'new', component: NewTransactionComponent}
+    { path: '', component: TransactionListComponent },
+    { path: 'new', component: NewTransactionComponent }
   ]
 }];
 

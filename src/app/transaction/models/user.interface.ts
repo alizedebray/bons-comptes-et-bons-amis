@@ -1,4 +1,4 @@
 export interface User {
-    name: string;
-    meansOfPayment: string[];
-  }
+  name: string;
+  meansOfPayment: string[];
+}
