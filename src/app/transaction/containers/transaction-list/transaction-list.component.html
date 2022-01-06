@@ -1,0 +1,18 @@
+<ng-container *ngIf="transactions$ | async as transactions">
+    <mat-list role="list" *ngIf="transactions.length; else noTransaction">
+        <mat-list-item *ngFor="let transaction of transactions" role="listitem">
+            <div mat-line>{{transaction.description}} - {{transaction.amount | currency}}</div>
+            <div mat-line>Payé par {{transaction.paidBy}} le {{transaction.date}}</div>
+        </mat-list-item>
+    </mat-list>
+
+    <ng-template #noTransaction>
+        <p>Il n'y a pas encore de transaction.</p>
+    </ng-template>
+</ng-container>
+
+<div class="pt-4 d-flex justify-content-end">
+    <a routerLink="new" mat-fab color="primary" aria-label="Ajouter une transaction">
+        <mat-icon>add</mat-icon>
+    </a>
+</div>

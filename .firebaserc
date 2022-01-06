@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "bons-comptes-et-bons-amis": {
+      "hosting": {
+        "bons-comptes-et-bons-amis": [
+          "bons-comptes-et-bons-amis"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "bons-comptes-et-bons-amis"
+  }
+}
