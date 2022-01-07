@@ -2,7 +2,7 @@
     <mat-list role="list" *ngIf="transactions.length; else noTransaction">
         <mat-list-item *ngFor="let transaction of transactions" role="listitem">
             <div mat-line>{{transaction.description}} - {{transaction.amount | currency}}</div>
-            <div mat-line>Payé par {{transaction.paidBy}} le {{transaction.date}}</div>
+            <div mat-line>Payé par {{transaction.paidBy}} le {{transaction.date | date}}</div>
         </mat-list-item>
     </mat-list>
 

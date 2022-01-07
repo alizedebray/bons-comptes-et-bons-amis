@@ -33,7 +33,7 @@
       [ngModelOptions]="{standalone: true}">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker touchUi #picker (closed)="paidBy.focus()"></mat-datepicker>
-    <input type="hidden" name="date" [ngModel]="date.value | date" />
+    <input type="hidden" name="date" [ngModel]="date.value?.getTime()" />
   </mat-form-field>
 
   <mat-form-field appearance="fill">

@@ -13,8 +13,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { TransactionModule } from './transaction/transaction.module';
 
 import { registerLocaleData } from '@angular/common';
-import localeFr from '@angular/common/locales/fr';
-registerLocaleData(localeFr);
+import localeFrCh from '@angular/common/locales/fr-CH';
+registerLocaleData(localeFrCh);
 
 @NgModule({
   declarations: [
@@ -30,8 +30,8 @@ registerLocaleData(localeFr);
     AngularFireDatabaseModule
   ],
   providers: [
-    {provide: LOCALE_ID, useValue: 'fr-FR'},
-    {provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR'}
+    {provide: LOCALE_ID, useValue: 'fr-CH'},
+    {provide: DEFAULT_CURRENCY_CODE, useValue: 'CHF'}
   ],
   bootstrap: [AppComponent]
 })

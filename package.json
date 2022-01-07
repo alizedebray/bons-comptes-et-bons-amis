@@ -28,6 +28,7 @@
     "codelyzer": "^6.0.2",
     "firebase": "^9.4.0",
     "materialize-css": "^1.0.0",
+    "moment": "^2.29.1",
     "rxfire": "^6.0.0",
     "rxjs": "^7.5.1",
     "tslib": "^2.0.0",

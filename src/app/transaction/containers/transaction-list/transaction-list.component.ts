@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { AngularFireDatabase } from "@angular/fire/compat/database";
-import { Observable } from "rxjs";
+import { map, Observable } from "rxjs";
 import { Transaction } from "../../models/transaction.interface";
 
 @Component({
@@ -10,6 +10,7 @@ export class TransactionListComponent {
     transactions$: Observable<Transaction[]>;
 
     constructor(db: AngularFireDatabase) {
-        this.transactions$ = db.list<Transaction>('transactions').valueChanges();
+        this.transactions$ = db.list<Transaction>('transactions', ref => ref.orderByChild('date')).valueChanges()
+            .pipe(map(transactions => transactions.reverse()));
     }
 }

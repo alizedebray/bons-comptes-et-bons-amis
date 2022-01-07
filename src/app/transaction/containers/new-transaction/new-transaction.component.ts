@@ -7,6 +7,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Category } from '../../models/category.interface';
 import { Group } from '../../models/group.interface';
 import { User } from '../../models/user.interface';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-new-transaction',
@@ -14,7 +15,7 @@ import { User } from '../../models/user.interface';
 })
 export class NewTransactionComponent implements OnDestroy {
   readonly destroy$ = new Subject<void>();
-  today: Date = new Date();
+  today: Date = new Date(moment().startOf('day').format());
   users: User[] = [];
   currentUser: User | null = null;
   everyone: string[] = [];
