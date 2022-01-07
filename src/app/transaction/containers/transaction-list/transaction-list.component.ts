@@ -10,6 +10,6 @@ export class TransactionListComponent {
     transactions$: Observable<Transaction[]>;
 
     constructor(db: AngularFireDatabase) {
-        this.transactions$ = db.list('transactions').valueChanges() as Observable<Transaction[]>;
+        this.transactions$ = db.list<Transaction>('transactions').valueChanges();
     }
 }

@@ -13,7 +13,7 @@ import { User } from '../../models/user.interface';
   templateUrl: './new-transaction.component.html'
 })
 export class NewTransactionComponent implements OnDestroy {
-  readonly destroy$ = new Subject();
+  readonly destroy$ = new Subject<void>();
   today: Date = new Date();
   users: User[] = [];
   currentUser: User | null = null;
@@ -24,11 +24,9 @@ export class NewTransactionComponent implements OnDestroy {
 
   constructor(private db: AngularFireDatabase,
     private router: Router) {
-    const groups$ = db.list('groups').valueChanges() as Observable<Group[]>;
-    groups$.pipe(takeUntil(this.destroy$)).subscribe(groups => this.groups = groups);
+    db.list<Group>('groups').valueChanges().pipe(takeUntil(this.destroy$)).subscribe(groups => this.groups = groups);
 
-    const users$ = db.list('users').valueChanges() as Observable<User[]>;
-    users$.pipe(takeUntil(this.destroy$)).subscribe(users => {
+    db.list<User>('users').valueChanges().pipe(takeUntil(this.destroy$)).subscribe(users => {
       this.users = users;
       this.everyone = users.map(({ name }) => name);
       this.currentUser = users[0];

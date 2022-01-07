@@ -29,7 +29,7 @@
     "firebase": "^9.4.0",
     "materialize-css": "^1.0.0",
     "rxfire": "^6.0.0",
-    "rxjs": "~6.6.0",
+    "rxjs": "^7.5.1",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"
   },
