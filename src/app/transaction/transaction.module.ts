@@ -23,7 +23,8 @@ const routes: Routes = [{
   path: '',
   children: [
     { path: '', component: TransactionListComponent },
-    { path: 'new', component: NewTransactionComponent }
+    { path: 'new', component: NewTransactionComponent },
+    { path: 'new/:transactionKey', component: NewTransactionComponent }
   ]
 }];
 

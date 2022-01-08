@@ -7,7 +7,7 @@
                 <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu" xPosition="before">
-                <button mat-menu-item>Modifier</button>
+                <a [routerLink]="['./new', transaction.key]" mat-menu-item>Modifier</a>
                 <button mat-menu-item (click)="confirmDeletion(transaction)">Supprimer</button>
             </mat-menu>
         </mat-list-item>
