@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AppCommonModule } from '../common/common.module';
 import { TransactionListComponent } from './containers/transaction-list/transaction-list.component';
 import { NewTransactionComponent } from './containers/new-transaction/new-transaction.component';
+import { DeletionConfirmationComponent } from './components/deletion-confirmation/deletion-confirmation.component';
 
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -15,6 +16,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const routes: Routes = [{
   path: '',
@@ -27,7 +30,8 @@ const routes: Routes = [{
 @NgModule({
   declarations: [
     TransactionListComponent,
-    NewTransactionComponent
+    NewTransactionComponent,
+    DeletionConfirmationComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +45,9 @@ const routes: Routes = [{
     MatSelectModule,
     MatButtonModule,
     MatListModule,
-    MatIconModule
+    MatIconModule,
+    MatMenuModule,
+    MatDialogModule
   ],
   providers: [
     MatDatepickerModule

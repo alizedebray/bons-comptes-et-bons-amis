@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Voulez vous vraiment supprimer cette transaction?</h1>
+<div mat-dialog-content>
+  <p>La transaction ne pourra pas être récupérée.</p>
+</div>
+<div mat-dialog-actions class="d-flex justify-content-end">
+  <button mat-button [mat-dialog-close]="false">Annuler</button>
+  <button mat-button [mat-dialog-close]="true" color="warn" cdkFocusInitial>Supprimer</button>
+</div>

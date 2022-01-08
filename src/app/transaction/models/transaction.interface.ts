@@ -1,4 +1,5 @@
 export interface Transaction {
+    key?: string;
     group: string;
     category: string;
     amount: string;

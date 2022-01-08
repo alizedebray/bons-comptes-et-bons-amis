@@ -3,6 +3,13 @@
         <mat-list-item *ngFor="let transaction of transactions" role="listitem">
             <div mat-line>{{transaction.description}} - {{transaction.amount | currency}}</div>
             <div mat-line>Payé par {{transaction.paidBy}} le {{transaction.date | date}}</div>
+            <button mat-icon-button aria-label="Ouvrir les actions" [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+                <button mat-menu-item>Modifier</button>
+                <button mat-menu-item (click)="confirmDeletion(transaction)">Supprimer</button>
+            </mat-menu>
         </mat-list-item>
     </mat-list>
 
