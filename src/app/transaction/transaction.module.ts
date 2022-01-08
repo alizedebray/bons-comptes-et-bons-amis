@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { AppCommonModule } from '../common/common.module';
 import { TransactionListComponent } from './containers/transaction-list/transaction-list.component';
 import { NewTransactionComponent } from './containers/new-transaction/new-transaction.component';
-import { NumbersOnlyDirective } from './directives/numbers-only.directive';
 
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -27,11 +27,11 @@ const routes: Routes = [{
 @NgModule({
   declarations: [
     TransactionListComponent,
-    NewTransactionComponent,
-    NumbersOnlyDirective
+    NewTransactionComponent
   ],
   imports: [
     CommonModule,
+    AppCommonModule,
     RouterModule.forChild(routes),
     FormsModule,
     MatFormFieldModule,

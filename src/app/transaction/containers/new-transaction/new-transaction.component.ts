@@ -15,6 +15,7 @@ import * as moment from 'moment';
 })
 export class NewTransactionComponent implements OnDestroy {
   readonly destroy$ = new Subject<void>();
+  readonly parseFloat = parseFloat;
   today: Date = new Date(moment().startOf('day').format());
   users: User[] = [];
   currentUser: User | null = null;

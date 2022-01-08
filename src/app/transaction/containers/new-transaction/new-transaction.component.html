@@ -24,7 +24,8 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Montant</mat-label>
-    <input matInput name="amount" ngModel required numbersOnly />
+    <input matInput #amount="ngModel" ngModel [ngModelOptions]="{standalone: true}" required float />
+    <input type="hidden" name="amount" [ngModel]="parseFloat(amount.value) || undefined" />
   </mat-form-field>
 
   <mat-form-field class="example-full-width" appearance="fill">
