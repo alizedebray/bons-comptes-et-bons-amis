@@ -1,7 +1,9 @@
 import { Component } from "@angular/core";
-import { AngularFireDatabase, AngularFireList } from "@angular/fire/compat/database";
 import { MatDialog } from "@angular/material/dialog";
 import { filter, map, Observable } from "rxjs";
+import { ExtendedFireList } from "src/app/common/models/extended-fire-list.interface";
+import { IndexedValue } from "src/app/common/models/indexed-objets.type";
+import { ExtendedFireDatabase } from "src/app/common/service/extended-fire-database.service";
 import { DeletionConfirmationComponent } from "../../components/deletion-confirmation/deletion-confirmation.component";
 import { Transaction } from "../../models/transaction.interface";
 
@@ -9,17 +11,15 @@ import { Transaction } from "../../models/transaction.interface";
     templateUrl: 'transaction-list.component.html'
 })
 export class TransactionListComponent {
-    transactionsRef: AngularFireList<Transaction>;
-    transactions$: Observable<Transaction[]>;
+    transactionsRef: ExtendedFireList<Transaction>;
+    transactions$: Observable<IndexedValue<Transaction>[]>;
 
-    constructor(db: AngularFireDatabase, public dialog: MatDialog) {
+    constructor(db: ExtendedFireDatabase, public dialog: MatDialog) {
         this.transactionsRef = db.list<Transaction>('transactions', ref => ref.orderByChild('date'));
-        this.transactions$ = this.transactionsRef.snapshotChanges().pipe(
-            map(changes => changes.reverse().map(c => ({ key: c.payload.key, ...c.payload.val() } as Transaction)))
-        );
+        this.transactions$ = this.transactionsRef.indexedValueChanges().pipe(map(changes => changes.reverse()));
     }
 
-    confirmDeletion(transaction: Transaction): void {
+    confirmDeletion(transaction: IndexedValue<Transaction>): void {
         const dialogRef = this.dialog.open(DeletionConfirmationComponent);
     
         dialogRef.afterClosed()
