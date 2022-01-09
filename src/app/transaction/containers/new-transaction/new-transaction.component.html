@@ -71,7 +71,9 @@
     <mat-form-field appearance="fill">
       <mat-label>Pour qui ?</mat-label>
       <mat-select formControlName="paidFor" multiple>
-        <mat-select-trigger *ngIf="paidForControl.value.length === users.length">
+        <mat-select-trigger
+          *ngIf="paidForControl.value.length === users.length"
+        >
           Tout le monde
         </mat-select-trigger>
         <mat-option *ngFor="let user of users" [value]="user.name">{{

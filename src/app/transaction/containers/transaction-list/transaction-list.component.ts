@@ -15,7 +15,7 @@ export class TransactionListComponent {
     transactions$: Observable<IndexedValue<Transaction>[]>;
 
     constructor(db: ExtendedFireDatabase, public dialog: MatDialog) {
-        this.transactionsRef = db.list<Transaction>('transactions', ref => ref.orderByChild('date'));
+        this.transactionsRef = db.list<Transaction>('transactions', ref => ref.orderByChild('timestamp'));
         this.transactions$ = this.transactionsRef.indexedValueChanges().pipe(map(changes => changes.reverse()));
     }
 

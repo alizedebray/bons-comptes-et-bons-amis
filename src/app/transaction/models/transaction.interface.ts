@@ -16,7 +16,13 @@ export class Transaction {
   amount: number;
 
   @prop()
-  date: number;
+  currency: string;
+
+  @prop()
+  exchangeRate: number;
+
+  @prop()
+  timestamp: number;
 
   @prop()
   paidBy: string;
@@ -28,7 +34,9 @@ export class Transaction {
   meansOfPayment: string;
 
   constructor(users: User[]) {
-    this.date = moment().startOf('day').valueOf();
+    this.exchangeRate = 1;
+    this.currency = 'CHF';
+    this.timestamp = moment().startOf('day').valueOf();
 
     this.paidBy = users[0].name;
     this.meansOfPayment = users[0].meansOfPayment[0];

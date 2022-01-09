@@ -24,16 +24,28 @@ export class NewTransactionComponent implements OnInit {
   categories$: Observable<Category[]>;
   meansOfPayment$: Observable<string[]>;
 
+  get groupControl(): FormControl {
+    return this.transactionForm.get('group') as FormControl;
+  }
+
   get amountControl(): FormControl {
     return this.transactionForm.get('amount') as FormControl;
   }
 
-  get dateControl(): FormControl {
-    return this.transactionForm.get('date') as FormControl;
+  get timestampControl(): FormControl {
+    return this.transactionForm.get('timestamp') as FormControl;
+  }
+
+  get paidByControl(): FormControl {
+    return this.transactionForm.get('paidBy') as FormControl;
   }
 
   get paidForControl(): FormControl {
     return this.transactionForm.get('paidFor') as FormControl;
+  }
+
+  get meansOfPaymentControl(): FormControl {
+    return this.transactionForm.get('meansOfPayment') as FormControl;
   }
 
   private _amount: string;
@@ -55,7 +67,7 @@ export class NewTransactionComponent implements OnInit {
 
   public set date(date: Date) {
     this._date = date;
-    this.dateControl.setValue(date.getTime());
+    this.timestampControl.setValue(date.getTime());
   }
 
   constructor(
@@ -70,9 +82,9 @@ export class NewTransactionComponent implements OnInit {
     this.users$.pipe(take(1)).subscribe((users) => {
       this.transactionForm = fb.formGroup(new Transaction(users));
 
-      this.date = new Date(this.dateControl.value);
+      this.date = new Date(this.timestampControl.value);
 
-      this.categories$ = this.transactionForm.get('group').valueChanges.pipe(
+      this.categories$ = this.groupControl.valueChanges.pipe(
         switchMap((groupName) =>
           this.groups$.pipe(
             map((groups) => groups.find((group) => group.name === groupName))
@@ -81,22 +93,18 @@ export class NewTransactionComponent implements OnInit {
         map((group) => group.categories)
       );
 
-      this.meansOfPayment$ = this.transactionForm
-        .get('paidBy')
-        .valueChanges.pipe(
-          startWith(this.transactionForm.get('paidBy').value as string),
-          switchMap((payerName) =>
-            this.users$.pipe(
-              map((users) => users.find((user) => user.name === payerName))
-            )
-          ),
-          map((user) => user.meansOfPayment),
-          tap((meansOfPayment) =>
-            this.transactionForm
-              .get('meansOfPayment')
-              .setValue(meansOfPayment[0])
+      this.meansOfPayment$ = this.paidByControl.valueChanges.pipe(
+        startWith(this.paidByControl.value as string),
+        switchMap((payerName) =>
+          this.users$.pipe(
+            map((users) => users.find((user) => user.name === payerName))
           )
-        );
+        ),
+        map((user) => user.meansOfPayment),
+        tap((meansOfPayment) =>
+          this.meansOfPaymentControl.setValue(meansOfPayment[0])
+        )
+      );
     });
 
     this.transactionKey$ = route.paramMap.pipe(
@@ -116,7 +124,7 @@ export class NewTransactionComponent implements OnInit {
       .subscribe((transaction) => {
         this.transactionForm.patchValue(transaction);
         this.amount = String(this.amountControl.value);
-        this.date = new Date(this.dateControl.value);
+        this.date = new Date(this.timestampControl.value);
       });
   }
 
