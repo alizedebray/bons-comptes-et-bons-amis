@@ -8,7 +8,8 @@ import { DeletionConfirmationComponent } from "../../components/deletion-confirm
 import { Transaction } from "../../models/transaction.interface";
 
 @Component({
-    templateUrl: 'transaction-list.component.html'
+    templateUrl: 'transaction-list.component.html',
+    styleUrls: ['transaction-list.component.sass']
 })
 export class TransactionListComponent {
     transactionsRef: ExtendedFireList<Transaction>;
@@ -16,7 +17,7 @@ export class TransactionListComponent {
 
     constructor(db: ExtendedFireDatabase, public dialog: MatDialog) {
         this.transactionsRef = db.list<Transaction>('transactions', ref => ref.orderByChild('timestamp'));
-        this.transactions$ = this.transactionsRef.indexedValueChanges().pipe(map(changes => changes.reverse()));
+        this.transactions$ = this.transactionsRef.indexedValueChanges().pipe(map(changes => changes.sort(() => 1)));
     }
 
     confirmDeletion(transaction: IndexedValue<Transaction>): void {
