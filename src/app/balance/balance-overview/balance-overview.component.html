@@ -1,0 +1,11 @@
+<mat-list role="list">
+  <mat-list-item
+    role="listitem"
+    *ngFor="let item of balance$ | async | keyvalue"
+  >
+    <mat-icon *ngIf="item.value > 0" mat-list-icon class="positive">north_east</mat-icon>
+    <mat-icon *ngIf="item.value < 0" mat-list-icon class="negative">south_east</mat-icon>
+    <div mat-line>{{ item.key }}</div>
+    <div mat-line>{{ item.value | currency }}</div>
+  </mat-list-item>
+</mat-list>

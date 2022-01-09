@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { AppCommonModule } from '../common/common.module';
-import { TransactionListComponent } from './containers/transaction-list/transaction-list.component';
-import { NewTransactionComponent } from './containers/new-transaction/new-transaction.component';
-import { DeletionConfirmationComponent } from './components/deletion-confirmation/deletion-confirmation.component';
+import { TransactionListComponent } from './transaction-list/transaction-list.component';
+import { NewTransactionComponent } from './new-transaction/new-transaction.component';
+import { DeletionConfirmationComponent } from './deletion-confirmation/deletion-confirmation.component';
 
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -19,9 +18,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
+import { CommonDirectivesModule } from '../common/directives/directives.module';
 
 const routes: Routes = [{
-  path: '',
+  path: 'transactions',
   children: [
     { path: '', component: TransactionListComponent },
     { path: 'new', component: NewTransactionComponent },
@@ -37,7 +37,7 @@ const routes: Routes = [{
   ],
   imports: [
     CommonModule,
-    AppCommonModule,
+    CommonDirectivesModule,
     RouterModule.forChild(routes),
     FormsModule,
     RxReactiveFormsModule,

@@ -6,4 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
+  links = [
+    {label: 'Transactions', path: 'transactions'},
+    {label: 'Décompte', path: 'decompte'},
+  ];
 }

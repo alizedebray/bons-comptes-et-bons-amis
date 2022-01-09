@@ -4,10 +4,10 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, map, startWith, switchMap, take, tap } from 'rxjs/operators';
-import { Category } from '../../models/category.interface';
-import { Group } from '../../models/group.interface';
-import { User } from '../../models/user.interface';
-import { Transaction } from '../../models/transaction.interface';
+import { Category } from '../../common/models/category.interface';
+import { Group } from '../../common/models/group.interface';
+import { User } from '../../common/models/user.interface';
+import { Transaction } from '../../common/models/transaction.interface';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 
 @Component({

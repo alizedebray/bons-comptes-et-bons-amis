@@ -1,11 +1,11 @@
 import { Component } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { filter, map, Observable } from "rxjs";
-import { ExtendedFireList } from "src/app/common/models/extended-fire-list.interface";
-import { IndexedValue } from "src/app/common/models/indexed-objets.type";
-import { ExtendedFireDatabase } from "src/app/common/service/extended-fire-database.service";
-import { DeletionConfirmationComponent } from "../../components/deletion-confirmation/deletion-confirmation.component";
-import { Transaction } from "../../models/transaction.interface";
+import { ExtendedFireList } from "../../common/models/extended-fire-list.interface";
+import { IndexedValue } from "../../common/models/indexed-objets.type";
+import { ExtendedFireDatabase } from "../../common/services/extended-fire-database.service";
+import { DeletionConfirmationComponent } from "../deletion-confirmation/deletion-confirmation.component";
+import { Transaction } from "../../common/models/transaction.interface";
 
 @Component({
     templateUrl: 'transaction-list.component.html',

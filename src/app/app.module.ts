@@ -9,8 +9,10 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from 'src/environments/environment';
 
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { TransactionModule } from './transaction/transaction.module';
+import { BalanceModule } from './balance/balance.module';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { registerLocaleData } from '@angular/common';
 import localeFrCh from '@angular/common/locales/fr-CH';
@@ -24,10 +26,12 @@ registerLocaleData(localeFrCh);
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatToolbarModule,
     TransactionModule,
+    BalanceModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    MatToolbarModule,
+    MatTabsModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'fr-CH'},

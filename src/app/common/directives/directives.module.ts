@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FloatDirective } from './directives/float.directive';
+import { FloatDirective } from './float.directive';
 
 
 
@@ -15,4 +15,4 @@ import { FloatDirective } from './directives/float.directive';
     FloatDirective
   ]
 })
-export class AppCommonModule { }
+export class CommonDirectivesModule { }
